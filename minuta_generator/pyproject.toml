@@ -1,0 +1,64 @@
+[project]
+name = "minuta-generator"
+version = "0.1.0"
+description = "Sistema de automação para criação de templates de minutas jurídicas usando IA"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+	{name = "PGM Legal Tech Team"}
+]
+
+dependencies = [
+	# Document reading
+	"pypdf>=4.0.0",           # PDF reading
+	"python-docx>=1.1.0",     # DOCX reading/writing
+	"beautifulsoup4>=4.12.0", # HTML parsing
+	"lxml>=5.0.0",            # XML/HTML processing
+	"python-doc>=0.0.1",      # DOC reading (legacy format)
+
+	# LLM providers
+	"google-generativeai>=0.3.0",  # Google Gemini API
+	"openai>=1.0.0",               # OpenAI API (for local model compatibility)
+
+	# Data models and validation
+	"pydantic>=2.0.0",
+	"pydantic-settings>=2.0.0",
+
+	# CLI and utilities
+	"click>=8.1.0",
+	"rich>=13.0.0",           # Beautiful terminal output
+	"python-dotenv>=1.0.0",   # Environment variables
+
+	# Text processing
+	"jinja2>=3.1.0",          # Template rendering
+]
+
+[project.optional-dependencies]
+dev = [
+	"pytest>=7.0.0",
+	"pytest-asyncio>=0.21.0",
+	"ruff>=0.1.0",
+	"pyright>=1.1.0",
+]
+
+[project.scripts]
+minuta-generator = "minuta_generator.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+
+[tool.ruff.format]
+indent-style = "tab"
+quote-style = "single"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W"]
+
+[tool.pyright]
+pythonVersion = "3.11"
+typeCheckingMode = "basic"
