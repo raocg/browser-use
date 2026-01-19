@@ -30,6 +30,12 @@ dist/
 *.log
 *.bak
 
+# Distribution archives
+*.tar.gz
+*.zip
+*.tar
+*.gz
+
 # Secrets and sensitive files
 secrets.env
 .env
